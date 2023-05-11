@@ -78,9 +78,10 @@ body {
     user-select: none;
 }
 
-.key:hover {
+.key:hover, .key.pressed{
     background-color: gray;
 }
+
 
 /* keys */
 .enter{
@@ -97,5 +98,5 @@ body {
     width: 80px;
 }
 .longest{
-    width: 120px;
+    width: 110px;
 }
