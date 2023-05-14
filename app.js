@@ -15,15 +15,11 @@ function handleKeyPress(event) {
             // pressed
             // letters
             toLowerCase();
-            // others
-            backToDefault();
             capsState = false; //no longer pressed
         } else {
             // not pressed
             // LETTERS
             convertToUppercase();
-            // others
-            charToShift();
             capsState = true; // pressed
         }
     }
