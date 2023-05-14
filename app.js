@@ -1,6 +1,9 @@
 let capsState = false;
+let charTextList = [];
+let current = 0;
 
 function handleKeyPress(event) {
+    event.preventDefault();
     // Get the key code of the pressed key
     const keyCode = event.code;
     console.log(event.code);
@@ -33,7 +36,50 @@ function handleKeyPress(event) {
     if (keyElement) {
         keyElement.classList.add("active");
     }
+
+    // verify if its the correct key:
+    handleVerifyKey(event);
 }
+
+function insertText() {
+    let text = "this   is the First Testing text that is used.!?<h1> yes"
+    charTextList = getCharacters(text);
+    console.log(charTextList);
+
+    const resultsContainer = document.querySelector(".results-container");
+    resultsContainer.innerHTML = ""; // clear previous results
+
+    let first = true;
+
+    charTextList.forEach((char) => {
+        // create new post div
+        const postDiv = document.createElement("div");
+        postDiv.classList.add("character");
+        if (first) {
+            postDiv.classList.add("current");
+            first = false;
+        }
+        // postDiv.textContent = char;
+
+        const letter = document.createElement("div");
+        if (char === " ") {
+            letter.innerHTML = "&nbsp;";
+        } else {
+            letter.textContent = char;
+            
+        }
+        postDiv.appendChild(letter);
+    
+        // append post div to results container
+        resultsContainer.appendChild(postDiv);
+      });
+}
+
+function getCharacters(str) {
+    return str.split('');
+  }
+  
+
 
 function handleKeyRelease(event) {
     // Get the key code of the released key
@@ -132,6 +178,28 @@ function toLowerCase() {
         key.textContent = key.textContent.toLowerCase();
     });
 }
+
+function handleVerifyKey(event){
+    let charDivList = document.querySelectorAll(".character");
+    console.log(event.key);
+    if(event.key === charTextList[current]){
+        charDivList[current].classList.add("correct");
+        // go next
+        charDivList[current].classList.remove("current");
+        current++;
+        charDivList[current].classList.add("current");
+    } else {
+        charDivList[current].classList.add("wrong");
+        // go next
+        charDivList[current].classList.remove("current");
+        current++;
+        charDivList[current].classList.add("current");
+    }
+    
+}
+
+
+insertText();
 
 // Add event listeners for key press and release events
 document.addEventListener("keydown", handleKeyPress);

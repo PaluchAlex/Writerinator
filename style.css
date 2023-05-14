@@ -53,11 +53,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
+    border: 5px solid black;
+    border-style: outset;
     border-radius: 10PX;
 }
 
-.row {
+.keyboard-row {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,7 +71,8 @@ body {
     align-items: center;
     width: 40px;
     height: 40px;
-    border: 1px solid black;
+    border: 4px solid black;
+    border-style: outset;
     margin: 5px;
     font-size: 20px;
     font-weight: bold;
@@ -83,8 +85,26 @@ body {
 }
 
 .active{
-    background-color: greenyellow;
+    background-color: rgb(74, 197, 74);
 }
+.correct{
+    background-color: rgb(74, 197, 74);
+}
+.current{
+    background-color: rgb(54, 219, 219) !important;
+}
+
+.wrong {
+    background-color: rgb(211, 98, 98) !important;
+}
+/* Text Div Start*/
+.results-container{
+    display: flex;
+}
+.character{
+    font-size: 30px
+}
+/* Text Div End*/
 
 /* keys */
 .enter{
