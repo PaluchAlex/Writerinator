@@ -6,3 +6,13 @@ The main idea of this app is to be used similarly to the other type learning web
 
 future ideas:
 	Another ideea is to add a typewriter mode that makes typewriter sounds and maybe changes the style
+
+Task list:
+	functionality:	
+		add backspace functionality
+		handle finishing text
+		underline current
+		way to insert text
+	style:
+		style keyboard
+		dark theme
