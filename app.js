@@ -1,3 +1,5 @@
+let capsState = false;
+
 function handleKeyPress(event) {
     // Get the key code of the pressed key
     const keyCode = event.code;
@@ -7,7 +9,26 @@ function handleKeyPress(event) {
     const keyElement = document.getElementById(keyCode);
 
     //change back to lowercase on release for the shift key
-    if(event.keyCode === 16){
+    // CAPS
+    if (event.keyCode === 20) {
+        if (capsState) {
+            // pressed
+            // letters
+            toLowerCase();
+            // others
+            backToDefault();
+            capsState = false; //no longer pressed
+        } else {
+            // not pressed
+            // LETTERS
+            convertToUppercase();
+            // others
+            charToShift();
+            capsState = true; // pressed
+        }
+    }
+    // SHIFT
+    if (event.keyCode === 16) {
         convertToUppercase();
         charToShift();
     }
@@ -26,7 +47,7 @@ function handleKeyRelease(event) {
     const keyElement = document.getElementById(keyCode);
 
     //change back to lowercase on release for the shift key
-    if(event.keyCode === 16){
+    if (event.keyCode === 16) {
         // letters
         toLowerCase();
         // others
@@ -65,7 +86,6 @@ function charToShift() {
     changeTextContentTo("Comma", "<");
     changeTextContentTo("Period", ">");
     changeTextContentTo("Slash", "?");
-    
 }
 
 function backToDefault() {
@@ -93,8 +113,6 @@ function backToDefault() {
     changeTextContentTo("Comma", ",");
     changeTextContentTo("Period", ".");
     changeTextContentTo("Slash", "/");
-
-
 }
 
 function changeTextContentTo(idOfElem, to) {
@@ -104,21 +122,21 @@ function changeTextContentTo(idOfElem, to) {
 
 // change letters to Uppercase / Lowercase on shift
 function convertToUppercase() {
-    const keys = document.querySelectorAll('.letter');
-  
-    keys.forEach(key => {
-      const keyText = key.textContent;
-      key.textContent = keyText.toUpperCase();
-    });
-  }
-  
-function toLowerCase() {
-    const keys = document.querySelectorAll('.letter');
+    const keys = document.querySelectorAll(".letter");
+
     keys.forEach((key) => {
-      key.textContent = key.textContent.toLowerCase();
+        const keyText = key.textContent;
+        key.textContent = keyText.toUpperCase();
     });
 }
-  
+
+function toLowerCase() {
+    const keys = document.querySelectorAll(".letter");
+    keys.forEach((key) => {
+        key.textContent = key.textContent.toLowerCase();
+    });
+}
+
 // Add event listeners for key press and release events
 document.addEventListener("keydown", handleKeyPress);
 document.addEventListener("keyup", handleKeyRelease);
