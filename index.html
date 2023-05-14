@@ -1,109 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writeinator</title>
-    <link rel="icon" href="images/typewriter.ico" />
-    <link rel="stylesheet" href="style.css">
-      <!-- Font Awesome -->
-      <script src="https://kit.fontawesome.com/beb86b326e.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writeinator</title>
+  <link rel="icon" href="images/typewriter.ico" />
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/beb86b326e.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
-    <div class="keyboard uk-keyboard">
-        <div class="row">
-          <div class="key">Esc</div>
-          <div class="key">F1</div>
-          <div class="key">F2</div>
-          <div class="key">F3</div>
-          <div class="key">F4</div>
-          <div class="key">F5</div>
-          <div class="key">F6</div>
-          <div class="key">F7</div>
-          <div class="key">F8</div>
-          <div class="key">F9</div>
-          <div class="key">F10</div>
-          <div class="key">F11</div>
-          <div class="key">F12</div>
-          <div class="key long">Del</div>
-        </div>
-        <div class="row">
-          <div class="key">`</div>
-          <div class="key">1</div>
-          <div class="key">2</div>
-          <div class="key">3</div>
-          <div class="key">4</div>
-          <div class="key">5</div>
-          <div class="key">6</div>
-          <div class="key">7</div>
-          <div class="key">8</div>
-          <div class="key">9</div>
-          <div class="key">0</div>
-          <div class="key">-</div>
-          <div class="key">+</div>
-          <div class="key longer"><i class="fa-solid fa-delete-left"></i></div>
-        </div>
-        <div class="row">
-          <div class="key long">Tab</div>
-          <div class="key">q</div>
-          <div class="key">w</div>
-          <div class="key">e</div>
-          <div class="key">r</div>
-          <div class="key">t</div>
-          <div class="key">y</div>
-          <div class="key">u</div>
-          <div class="key">i</div>
-          <div class="key">o</div>
-          <div class="key">p</div>
-          <div class="key">[</div>
-          <div class="key">]</div>
-          <div class="key longer"><img class="enter" src="images/enter.png" alt="" srcset=""></i></div>
-        </div>
-        <div class="row">
-          <div class="key caps-lock longer">CapsLk</div>
-          <div class="key">a</div>
-          <div class="key">s</div>
-          <div class="key">d</div>
-          <div class="key">f</div>
-          <div class="key">g</div>
-          <div class="key">h</div>
-          <div class="key">j</div>
-          <div class="key">k</div>
-          <div class="key">l</div>
-          <div class="key">;</div>
-          <div class="key">'</div>
-          <div class="key">#</div>
-        </div>
-        <div class="row">
-          <div class="key long left-shift"><i class="fa-solid fa-chevron-up"></i></div>
-          <div class="key">\</div>
-          <div class="key">z</div>
-          <div class="key">x</div>
-          <div class="key">c</div>
-          <div class="key">v</div>
-          <div class="key">b</div>
-          <div class="key">n</div>
-          <div class="key">m</div>
-          <div class="key">,</div>
-            <div class="key">.</div>
-            <div class="key">/</div>
-            <div class="key longest right-shift"><i class="fa-solid fa-chevron-up"></i></div>
-        </div>
-        <div class="row">
-            <div class="key long left-ctrl">Ctrl</div>
-            <div class="key left-ctrl">Fn</div>
-            <div class="key left-win"><i class="fa-brands fa-windows"></i></div>
-            <div class="key long left-alt">Alt</div>
-            <div class="key spacebar"> </div>
-            <div class="key long right-alt">Alt</div>
-            <div class="key long context-menu"><i class="fa-solid fa-bars"></i></div>
-            <div class="key long right-ctrl">Ctrl</div>
-        </div>
-        
-    </div>        
-      
-    <script src="app.js"></script>
+  <div id="defaultUK" class="keyboard uk-keyboard">
+    <div class="row">
+      <div id="Escape" class="key">Esc</div>
+      <div id="F1" class="key">F1</div>
+      <div id="F2" class="key">F2</div>
+      <div id="F3" class="key">F3</div>
+      <div id="F4" class="key">F4</div>
+      <div id="F5" class="key">F5</div>
+      <div id="F6" class="key">F6</div>
+      <div id="F7" class="key">F7</div>
+      <div id="F8" class="key">F8</div>
+      <div id="F9" class="key">F9</div>
+      <div id="F10" class="key">F10</div>
+      <div id="F11" class="key">F11</div>
+      <div id="F12" class="key">F12</div>
+      <div id="Delete" class="key long">Del</div>
+    </div>
+    <div class="row">
+      <div id="Backquote" class="key">`</div>
+      <div id="Digit1" class="key">1</div>
+      <div id="Digit2" class="key">2</div>
+      <div id="Digit3" class="key">3</div>
+      <div id="Digit4" class="key">4</div>
+      <div id="Digit5" class="key">5</div>
+      <div id="Digit6" class="key">6</div>
+      <div id="Digit7" class="key">7</div>
+      <div id="Digit8" class="key">8</div>
+      <div id="Digit9" class="key">9</div>
+      <div id="Digit0" class="key">0</div>
+      <div id="Minus" class="key">-</div>
+      <div id="Equal" class="key">=</div>
+      <div id="Backspace" class="key longer"><i class="fa-solid fa-delete-left"></i></div>
+    </div>
+    <div class="row">
+      <div id="Tab" class="key long">Tab</div>
+      <div id="KeyQ" class="key letter">q</div>
+      <div id="KeyW" class="key letter">w</div>
+      <div id="KeyE" class="key letter">e</div>
+      <div id="KeyR" class="key letter">r</div>
+      <div id="KeyT" class="key letter">t</div>
+      <div id="KeyY" class="key letter">y</div>
+      <div id="KeyU" class="key letter">u</div>
+      <div id="KeyI" class="key letter">i</div>
+      <div id="KeyO" class="key letter">o</div>
+      <div id="KeyP" class="key letter">p</div>
+      <div id="BracketLeft" class="key">[</div>
+      <div id="BracketRight" class="key">]</div>
+      <div id="Enter" class="key longer"><img class="enter" src="images/enter.png" alt="" srcset=""></i></div>
+    </div>
+    <div class="row">
+      <div id="CapsLock" class="key caps-lock longer">CapsLk</div>
+      <div id="KeyA" class="key letter">a</div>
+      <div id="KeyS" class="key letter">s</div>
+      <div id="KeyD" class="key letter">d</div>
+      <div id="KeyF" class="key letter">f</div>
+      <div id="KeyG" class="key letter">g</div>
+      <div id="KeyH" class="key letter">h</div>
+      <div id="KeyJ" class="key letter">j</div>
+      <div id="KeyK" class="key letter">k</div>
+      <div id="KeyL" class="key letter">l</div>
+      <div id="Semicolon" class="key">;</div>
+      <div id="Quote" class="key">'</div>
+      <div id="Backslash" class="key">#</div>
+    </div>
+    <div class="row">
+      <div id="ShiftLeft" class="key long left-shift"><i class="fa-solid fa-chevron-up"></i></div>
+      <div id="IntlBackslash" class="key">\</div>
+      <div id="KeyZ" class="key letter">z</div>
+      <div id="KeyX" class="key letter">x</div>
+      <div id="KeyC" class="key letter">c</div>
+      <div id="KeyV" class="key letter">v</div>
+      <div id="KeyB" class="key letter">b</div>
+      <div id="KeyN" class="key letter">n</div>
+      <div id="KeyM" class="key letter">m</div>
+      <div id="Comma" class="key">,</div>
+      <div id="Period" class="key">.</div>
+      <div id="Slash" class="key">/</div>
+      <div id="ShiftRight" class="key longest right-shift"><i class="fa-solid fa-chevron-up"></i></div>
+    </div>
+    <div class="row">
+      <div id="ControlLeft" class="key long left-ctrl">Ctrl</div>
+      <div id="" class="key left-ctrl">Fn</div>
+      <div id="MetaLeft" class="key left-win"><i class="fa-brands fa-windows"></i></div>
+      <div id="AltLeft" class="key long left-alt">Alt</div>
+      <div id="32" class="key spacebar"> </div>
+      <div id="AltRight" class="key long right-alt">Alt</div>
+      <div id="ContextMenu" class="key long context-menu"><i class="fa-solid fa-bars"></i></div>
+      <div id="ControlRight" class="key long right-ctrl">Ctrl</div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
+
 </html>
