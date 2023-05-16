@@ -11,11 +11,12 @@ Task list:
 	functionality:	
 		✔️ fix caps bug (if in caps after pressing shift the keys go back to being smaller)
 		✔️ add backspace functionality
-		- handle finishing text
-		underline current
-		way to insert text
-		sounds 
+		✔️ handle finishing text
+		✔️ way to insert text
+		✔️ space text
 		spacing \n
+		sounds 
+	 	underline current
 	style:
 		style keyboard
 		dark theme

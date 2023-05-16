@@ -51,7 +51,7 @@ function handleKeyRelease(event) {
 
     //change back to lowercase on release for the shift key
     if (event.keyCode === 16) {
-        if (!capsState){
+        if (!capsState) {
             // letters
             toLowerCase();
         }
@@ -65,44 +65,45 @@ function handleKeyRelease(event) {
     }
 }
 
-function insertText() {
-    let text = "yes"
+function insertText(text) {
+
+    if (text == null) {
+        text = "This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.";
+    }
+    let brakeCounter = 0;
     charTextList = getCharacters(text);
-    console.log(charTextList);
 
     const resultsContainer = document.querySelector(".results-container");
     resultsContainer.innerHTML = ""; // clear previous results
 
     let first = true;
 
-    charTextList.forEach((char) => {
-        // create new post div
-        const postDiv = document.createElement("div");
-        postDiv.classList.add("character");
-        if (first) {
-            postDiv.classList.add("current");
-            first = false;
-        }
-        // postDiv.textContent = char;
+    charTextList.forEach((char) => {    
+            // create new post div
+            const postDiv = document.createElement("div");
+            postDiv.classList.add("character");
+            if (first) {
+                postDiv.classList.add("current");
+                first = false;
+            }
+            // postDiv.textContent = char;
 
-        const letter = document.createElement("div");
-        if (char === " ") {
-            letter.innerHTML = "&nbsp;";
-        } else {
-            letter.textContent = char;
-            
-        }
-        postDiv.appendChild(letter);
-    
+            const letter = document.createElement("div");
+            if (char === " ") {
+                letter.innerHTML = "&nbsp;";
+            } else {
+                letter.innerHTML = char;
+            }
+            postDiv.appendChild(letter);
+        
         // append post div to results container
         resultsContainer.appendChild(postDiv);
-      });
+    });
 }
 
 function getCharacters(str) {
-    return str.split('');
-  }
-  
+    return str.split("");
+}
 
 // change non letter chars on shift
 function charToShift() {
@@ -181,18 +182,18 @@ function toLowerCase() {
     });
 }
 
-function handleVerifyKey(event){
+function handleVerifyKey(event) {
     let charDivList = document.querySelectorAll(".character");
     console.log(event.key);
 
-    if(event.key === charTextList[current]){
+    if (event.key === charTextList[current]) {
         charDivList[current].classList.add("correct");
         // go next
         charDivList[current].classList.remove("current");
         current++;
-    }else if (event.key === "Backspace") {
+    } else if (event.key === "Backspace") {
         // backspace case
-        
+
         console.log("entering backspace case");
         charDivList[current].classList.remove("current");
         current--;
@@ -200,22 +201,27 @@ function handleVerifyKey(event){
         // remove colors
         charDivList[current].classList.remove("wrong");
         charDivList[current].classList.remove("correct");
-
-    } else if (event.key != "CapsLock" && event.key != "Shift" && event.key != "Alt"){
+    } else if (
+        event.key != "CapsLock" &&
+        event.key != "Shift" &&
+        event.key != "Alt"
+    ) {
         charDivList[current].classList.add("wrong");
         // go next
         charDivList[current].classList.remove("current");
         current++;
     }
-    
-    if(current === charDivList.length){
+
+    if (current === charDivList.length) {
         // reached end case!
         console.log("reached end case!");
-        alert("You've reached the end of the text, the text will now be repeating!");
-        charDivList.forEach(div => {
-            div.classList.remove("wrong")
-            div.classList.remove("correct")
-        })
+        alert(
+            "You've reached the end of the text, the text will now be repeating!"
+        );
+        charDivList.forEach((div) => {
+            div.classList.remove("wrong");
+            div.classList.remove("correct");
+        });
         // reset to 0
         current = 0;
         charDivList[current].classList.add("current");
@@ -224,6 +230,11 @@ function handleVerifyKey(event){
     }
 }
 
+$("#submitBtn").on("click", function () {
+    const inputField = document.getElementById("typeInput");
+    insertText(inputField.value);
+    current = 0;
+});
 
 insertText();
 
