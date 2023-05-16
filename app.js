@@ -3,7 +3,8 @@ let charTextList = [];
 let current = 0;
 
 function handleKeyPress(event) {
-    event.preventDefault();
+    // event.preventDefault();
+
     // Get the key code of the pressed key
     const keyCode = event.code;
     console.log(event.code);
@@ -65,7 +66,7 @@ function handleKeyRelease(event) {
 }
 
 function insertText() {
-    let text = "this   is the First Testing text that is used.!?<h1> yes"
+    let text = "yes"
     charTextList = getCharacters(text);
     console.log(charTextList);
 
@@ -183,31 +184,44 @@ function toLowerCase() {
 function handleVerifyKey(event){
     let charDivList = document.querySelectorAll(".character");
     console.log(event.key);
+
     if(event.key === charTextList[current]){
         charDivList[current].classList.add("correct");
         // go next
         charDivList[current].classList.remove("current");
         current++;
-        charDivList[current].classList.add("current");
     }else if (event.key === "Backspace") {
         // backspace case
         
         console.log("entering backspace case");
         charDivList[current].classList.remove("current");
         current--;
-        charDivList[current].classList.add("current");
+        // charDivList[current].classList.add("current");
         // remove colors
         charDivList[current].classList.remove("wrong");
         charDivList[current].classList.remove("correct");
 
-    } else if (event.key != "CapsLock" && event.key != "Shift"){
+    } else if (event.key != "CapsLock" && event.key != "Shift" && event.key != "Alt"){
         charDivList[current].classList.add("wrong");
         // go next
         charDivList[current].classList.remove("current");
         current++;
-        charDivList[current].classList.add("current");
     }
     
+    if(current === charDivList.length){
+        // reached end case!
+        console.log("reached end case!");
+        alert("You've reached the end of the text, the text will now be repeating!");
+        charDivList.forEach(div => {
+            div.classList.remove("wrong")
+            div.classList.remove("correct")
+        })
+        // reset to 0
+        current = 0;
+        charDivList[current].classList.add("current");
+    } else {
+        charDivList[current].classList.add("current");
+    }
 }
 
 
