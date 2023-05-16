@@ -9,8 +9,8 @@ future ideas:
 
 Task list:
 	functionality:	
-		fix caps bug (if in caps after pressing shift the keys go back to being smaller)
-		add backspace functionality
+		✔️ fix caps bug (if in caps after pressing shift the keys go back to being smaller)
+		- add backspace functionality
 		handle finishing text
 		underline current
 		way to insert text

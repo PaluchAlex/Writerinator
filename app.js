@@ -189,7 +189,18 @@ function handleVerifyKey(event){
         charDivList[current].classList.remove("current");
         current++;
         charDivList[current].classList.add("current");
-    } else {
+    }else if (event.key === "Backspace") {
+        // backspace case
+        
+        console.log("entering backspace case");
+        charDivList[current].classList.remove("current");
+        current--;
+        charDivList[current].classList.add("current");
+        // remove colors
+        charDivList[current].classList.remove("wrong");
+        charDivList[current].classList.remove("correct");
+
+    } else if (event.key != "CapsLock" && event.key != "Shift"){
         charDivList[current].classList.add("wrong");
         // go next
         charDivList[current].classList.remove("current");
