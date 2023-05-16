@@ -41,6 +41,29 @@ function handleKeyPress(event) {
     handleVerifyKey(event);
 }
 
+function handleKeyRelease(event) {
+    // Get the key code of the released key
+    const keyCode = event.code;
+
+    // Get the corresponding key element based on the key code
+    const keyElement = document.getElementById(keyCode);
+
+    //change back to lowercase on release for the shift key
+    if (event.keyCode === 16) {
+        if (!capsState){
+            // letters
+            toLowerCase();
+        }
+        // others
+        backToDefault();
+    }
+
+    // Do something with the key element, such as remove a class
+    if (keyElement) {
+        keyElement.classList.remove("active");
+    }
+}
+
 function insertText() {
     let text = "this   is the First Testing text that is used.!?<h1> yes"
     charTextList = getCharacters(text);
@@ -79,28 +102,6 @@ function getCharacters(str) {
     return str.split('');
   }
   
-
-
-function handleKeyRelease(event) {
-    // Get the key code of the released key
-    const keyCode = event.code;
-
-    // Get the corresponding key element based on the key code
-    const keyElement = document.getElementById(keyCode);
-
-    //change back to lowercase on release for the shift key
-    if (event.keyCode === 16) {
-        // letters
-        toLowerCase();
-        // others
-        backToDefault();
-    }
-
-    // Do something with the key element, such as remove a class
-    if (keyElement) {
-        keyElement.classList.remove("active");
-    }
-}
 
 // change non letter chars on shift
 function charToShift() {
