@@ -1,7 +1,31 @@
 let capsState = false;
+let shiftPressed = false;
 let charTextList = [];
 let wordTextList = [];
 let current = 0;
+
+//counter
+let counter = 0; // half a second
+let timer_on = 0;
+let timeout;
+
+
+function timedCount() {
+    counter++;
+    timeout = setTimeout(timedCount, 100);
+}
+
+function startCount() {
+    if (!timer_on) {
+        timer_on = 1;
+        timedCount();
+    }
+}
+
+function stopCount() {
+    clearTimeout(timeout);
+    timer_on = 0;
+}
 
 function handleKeyPress(event) {
     // event.preventDefault();
@@ -13,7 +37,6 @@ function handleKeyPress(event) {
     // Get the corresponding key element based on the key code
     const keyElement = document.getElementById(keyCode);
 
-    //change back to lowercase on release for the shift key
     // CAPS
     if (event.keyCode === 20) {
         if (capsState) {
@@ -30,7 +53,12 @@ function handleKeyPress(event) {
     }
     // SHIFT
     if (event.keyCode === 16) {
-        convertToUppercase();
+        shiftPressed = true;
+        if (capsState) {
+            toLowerCase();
+        } else {
+            convertToUppercase();
+        }
         charToShift();
     }
 
@@ -44,6 +72,23 @@ function handleKeyPress(event) {
 }
 
 function handleKeyRelease(event) {
+    //verify caps lock state
+    if (event.getModifierState("CapsLock")) {
+        capsState = true; // caps on
+        if (shiftPressed) {
+            toLowerCase();
+        } else {
+            convertToUppercase();
+        }
+    } else {
+        capsState = false; // caps off
+        if (!shiftPressed) {
+            toLowerCase();
+        } else {
+            convertToUppercase();
+        }
+    }
+
     // Get the key code of the released key
     const keyCode = event.code;
 
@@ -52,8 +97,11 @@ function handleKeyRelease(event) {
 
     //change back to lowercase on release for the shift key
     if (event.keyCode === 16) {
-        if (!capsState) {
-            // letters
+        shiftPressed = false;
+        // letters
+        if (capsState) {
+            convertToUppercase();
+        } else {
             toLowerCase();
         }
         // others
@@ -67,11 +115,11 @@ function handleKeyRelease(event) {
 }
 
 function insertText(text) {
-
     if (text == null) {
-        text = "This is the default text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et odio pellentesque diam volutpat commodo. Platea dictumst quisque sagittis purus sit amet volutpat. Nibh sed pulvinar proin gravida hendrerit.";
+        text = "This is the default"
+        //    "This is the default text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et odio pellentesque diam volutpat commodo. Platea dictumst quisque sagittis purus sit amet volutpat. Nibh sed pulvinar proin gravida hendrerit.";
     }
-    let brakeCounter = 0;
+    // let brakeCounter = 0;
     charTextList = getCharacters(text);
     wordTextList = getWords(text);
     console.log(wordTextList);
@@ -81,62 +129,37 @@ function insertText(text) {
 
     let first = true;
 
-    // charTextList.forEach((char) => {    
-    //         // create new post div
-    //         const postDiv = document.createElement("div");
-    //         postDiv.classList.add("character");
-    //         if (first) {
-    //             postDiv.classList.add("current");
-    //             first = false;
-    //         }
-    //         // postDiv.textContent = char;
-
-    //         const letter = document.createElement("div");
-    //         if (char === " ") {
-    //             letter.innerHTML = "&nbsp;";
-    //         } else {
-    //             letter.innerHTML = char;
-    //         }
-    //         postDiv.appendChild(letter);
-        
-    //     // append post div to results container
-    //     resultsContainer.appendChild(postDiv);
-    // });
-
-    //for each word 
-    wordTextList.forEach((word) => {    
+    //for each word
+    wordTextList.forEach((word) => {
         // create new word div
         const wordDiv = document.createElement("div");
         wordDiv.classList.add("word");
 
-            for (let index = 0; index < word.length; index++) {
-                const char = word.charAt(index);
+        for (let index = 0; index < word.length; index++) {
+            const char = word.charAt(index);
 
-                const charDiv = document.createElement("div");
-                charDiv.classList.add("character");
+            const charDiv = document.createElement("div");
+            charDiv.classList.add("character");
 
-                if (first) {
-                    charDiv.classList.add("current");
-                    first = false;
-                }
-                // charDiv.textContent = char;
-                console.log(word.length);
-                charDiv.innerHTML = char;
-                wordDiv.appendChild(charDiv);
-                // handle space
-                if ( index === word.length - 1 ) {
-                    const spaceDiv = document.createElement("div");
-                    spaceDiv.classList.add("character");
-
-                    spaceDiv.innerHTML = "&nbsp;";
-                    wordDiv.appendChild(spaceDiv);
-                }
+            if (first) {
+                charDiv.classList.add("current");
+                first = false;
             }
+            // charDiv.textContent = char;
+            charDiv.innerHTML = char;
+            wordDiv.appendChild(charDiv);
+            // handle space
+            if (index === word.length - 1) {
+                const spaceDiv = document.createElement("div");
+                spaceDiv.classList.add("character");
+
+                spaceDiv.innerHTML = "&nbsp;";
+                wordDiv.appendChild(spaceDiv);
+            }
+        }
         // append post div to results container
         resultsContainer.appendChild(wordDiv);
     });
-
-
 }
 
 function getCharacters(str) {
@@ -145,7 +168,6 @@ function getCharacters(str) {
 function getWords(str) {
     return str.split(" ");
 }
-
 
 // change non letter chars on shift
 function charToShift() {
@@ -225,6 +247,9 @@ function toLowerCase() {
 }
 
 function handleVerifyKey(event) {
+    //start timer
+    startCount();
+
     let charDivList = document.querySelectorAll(".character");
     console.log(event.key);
 
@@ -235,14 +260,15 @@ function handleVerifyKey(event) {
         current++;
     } else if (event.key === "Backspace") {
         // backspace case
-
-        console.log("entering backspace case");
-        charDivList[current].classList.remove("current");
-        current--;
-        // charDivList[current].classList.add("current");
-        // remove colors
-        charDivList[current].classList.remove("wrong");
-        charDivList[current].classList.remove("correct");
+        if (current != 0) {
+            console.log("entering backspace case");
+            charDivList[current].classList.remove("current");
+            current--;
+            // charDivList[current].classList.add("current");
+            // remove colors
+            charDivList[current].classList.remove("wrong");
+            charDivList[current].classList.remove("correct");
+        }
     } else if (
         event.key != "CapsLock" &&
         event.key != "Shift" &&
@@ -257,9 +283,15 @@ function handleVerifyKey(event) {
     if (current === charDivList.length) {
         // reached end case!
         console.log("reached end case!");
-        alert(
-            "You've reached the end of the text, the text will now be repeating!"
-        );
+
+        //stop timer
+        stopCount();
+        alert(calculateResult());
+        counter = 0;
+
+        // alert(
+        //     "You've reached the end of the text, the text will now be repeating!"
+        // );
         charDivList.forEach((div) => {
             div.classList.remove("wrong");
             div.classList.remove("correct");
@@ -270,6 +302,21 @@ function handleVerifyKey(event) {
     } else {
         charDivList[current].classList.add("current");
     }
+}
+
+function calculateResult() {
+
+    let uncorrectedErrors = document.getElementsByClassName("wrong").length - 1; // -1 !!! last element is wrong for some reason
+    let totalChars = charTextList.length;
+    let correctEntries = totalChars - uncorrectedErrors;
+
+    let chars = charTextList.length;
+    let seconds = counter/10;
+    let minutes = seconds/60;
+    let wpm = ((chars/5) - uncorrectedErrors)/minutes;
+    let accuracy = (correctEntries/totalChars)*100;
+    let resultString = wpm.toFixed(2) +" net W/N and "+ accuracy.toFixed(2) + "% accuracy";
+    return resultString
 }
 
 $("#submitBtn").on("click", function () {
