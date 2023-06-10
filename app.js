@@ -1,5 +1,6 @@
 let capsState = false;
 let charTextList = [];
+let wordTextList = [];
 let current = 0;
 
 function handleKeyPress(event) {
@@ -68,42 +69,83 @@ function handleKeyRelease(event) {
 function insertText(text) {
 
     if (text == null) {
-        text = "This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.This is the default text.";
+        text = "This is the default text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et odio pellentesque diam volutpat commodo. Platea dictumst quisque sagittis purus sit amet volutpat. Nibh sed pulvinar proin gravida hendrerit.";
     }
     let brakeCounter = 0;
     charTextList = getCharacters(text);
+    wordTextList = getWords(text);
+    console.log(wordTextList);
 
     const resultsContainer = document.querySelector(".results-container");
     resultsContainer.innerHTML = ""; // clear previous results
 
     let first = true;
 
-    charTextList.forEach((char) => {    
-            // create new post div
-            const postDiv = document.createElement("div");
-            postDiv.classList.add("character");
-            if (first) {
-                postDiv.classList.add("current");
-                first = false;
-            }
-            // postDiv.textContent = char;
+    // charTextList.forEach((char) => {    
+    //         // create new post div
+    //         const postDiv = document.createElement("div");
+    //         postDiv.classList.add("character");
+    //         if (first) {
+    //             postDiv.classList.add("current");
+    //             first = false;
+    //         }
+    //         // postDiv.textContent = char;
 
-            const letter = document.createElement("div");
-            if (char === " ") {
-                letter.innerHTML = "&nbsp;";
-            } else {
-                letter.innerHTML = char;
-            }
-            postDiv.appendChild(letter);
+    //         const letter = document.createElement("div");
+    //         if (char === " ") {
+    //             letter.innerHTML = "&nbsp;";
+    //         } else {
+    //             letter.innerHTML = char;
+    //         }
+    //         postDiv.appendChild(letter);
         
+    //     // append post div to results container
+    //     resultsContainer.appendChild(postDiv);
+    // });
+
+    //for each word 
+    wordTextList.forEach((word) => {    
+        // create new word div
+        const wordDiv = document.createElement("div");
+        wordDiv.classList.add("word");
+
+            for (let index = 0; index < word.length; index++) {
+                const char = word.charAt(index);
+
+                const charDiv = document.createElement("div");
+                charDiv.classList.add("character");
+
+                if (first) {
+                    charDiv.classList.add("current");
+                    first = false;
+                }
+                // charDiv.textContent = char;
+                console.log(word.length);
+                charDiv.innerHTML = char;
+                wordDiv.appendChild(charDiv);
+                // handle space
+                if ( index === word.length - 1 ) {
+                    const spaceDiv = document.createElement("div");
+                    spaceDiv.classList.add("character");
+
+                    spaceDiv.innerHTML = "&nbsp;";
+                    wordDiv.appendChild(spaceDiv);
+                }
+            }
         // append post div to results container
-        resultsContainer.appendChild(postDiv);
+        resultsContainer.appendChild(wordDiv);
     });
+
+
 }
 
 function getCharacters(str) {
     return str.split("");
 }
+function getWords(str) {
+    return str.split(" ");
+}
+
 
 // change non letter chars on shift
 function charToShift() {
