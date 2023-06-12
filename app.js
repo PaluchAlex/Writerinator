@@ -319,6 +319,12 @@ function calculateResult() {
     return resultString
 }
 
+$("#clipboardBtn").on("click", async () => {
+    const text = await navigator.clipboard.readText();
+
+    insertText(text);
+})
+
 $("#submitBtn").on("click", function () {
     const inputField = document.getElementById("typeInput");
     insertText(inputField.value);
