@@ -17,7 +17,7 @@ Task list:
 		✔️fix backspace at the beginning bug
 		✔️fix caps bugs
 		✔️when in caps by pressing shift letters should be lowercase
-		way to measure typing speed. (WPM words per minute 1 word = 5 keystrokes)
+		✔️way to measure typing speed. (WPM words per minute 1 word = 5 keystrokes)
 		sounds 
 	 	underline current
 	style:
