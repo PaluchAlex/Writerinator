@@ -6,6 +6,7 @@ The main idea of this app is to be used similarly to the other type learning web
 
 future ideas:
 	Another ideea is to add a typewriter mode that makes typewriter sounds and maybe changes the style
+	one of the sounds could be trigered when a new line is started by checking the y coordonates
 
 Task list:
 	functionality:	
@@ -13,17 +14,17 @@ Task list:
 		✔️ add backspace functionality
 		✔️ handle finishing text
 		✔️ way to insert text
-		fix final space bug
-		✔️fix backspace at the beginning bug
-		✔️fix caps bugs
-		✔️when in caps by pressing shift letters should be lowercase
-		✔️way to measure typing speed. (WPM words per minute 1 word = 5 keystrokes)
+		✔️ fix final space bug
+		✔️ fix backspace at the beginning bug
+		✔️ fix caps bugs
+		✔️ when in caps by pressing shift letters should be lowercase
+		✔️ way to measure typing speed. (WPM words per minute 1 word = 5 keystrokes)
 		sounds 
-	 	underline current
+	 	✔️ underline current
 	style:
 		✔️ space text
 		✔️ spacing \n
-		style current char
-		style words
-		style keyboard
-		dark theme
+		✔️ style current char
+		✔️ style words
+		✔️ style keyboard
+		✔️ dark theme
