@@ -167,6 +167,8 @@ function handleVerifyKey(event) {
         //stop timer
         stopCount();
 
+        removeActiveClass();
+
         charDivList.forEach((div) => {
             div.classList.remove("wrong");
             div.classList.remove("correct");
@@ -195,7 +197,13 @@ function calculateResult() {
         wpm.toFixed(2) + " net W/N and " + accuracy.toFixed(2) + "% accuracy";
     return resultString;
 }
-
+function removeActiveClass() {
+    const elements = document.querySelectorAll('.active');
+    elements.forEach(element => {
+      element.classList.remove('active');
+    });
+}
+  
 // text insertion functions
 function insertText(text) {
     if (text == null || text == "") {
