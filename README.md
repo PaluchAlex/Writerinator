@@ -5,7 +5,7 @@ The main idea of this app is to be used similarly to the other type learning web
 
 
 future ideas:
-	Another ideea is to add a typewriter mode that makes typewriter sounds and maybe changes the style
+	To add a typewriter mode that makes typewriter sounds and maybe changes the style
 	one of the sounds could be trigered when a new line is started by checking the y coordonates
 
 Task list:
