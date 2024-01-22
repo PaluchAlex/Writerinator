@@ -21,6 +21,10 @@ Task list:
 		✔️ way to measure typing speed. (WPM words per minute 1 word = 5 keystrokes)
 		sounds 
 	 	✔️ underline current
+		text arrangement
+		default exercices
+		style pallete picker
+		
 	style:
 		✔️ space text
 		✔️ spacing \n

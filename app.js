@@ -194,7 +194,7 @@ function calculateResult() {
     let wpm = (chars / 5 - uncorrectedErrors) / minutes;
     let accuracy = (correctEntries / totalChars) * 100;
     let resultString =
-        wpm.toFixed(2) + " net W/N and " + accuracy.toFixed(2) + "% accuracy";
+        wpm.toFixed(2) + " net W/M and " + accuracy.toFixed(2) + "% accuracy";
     return resultString;
 }
 function removeActiveClass() {
