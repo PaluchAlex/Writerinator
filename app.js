@@ -9,6 +9,9 @@ let counter = 0; // half a second
 let timer_on = 0;
 let timeout;
 
+//examples
+let examples = ["One summer's day, in a field, a Grasshopper was hopping about, chirping and singing to its heart's content.\n An Ant passed by, bearing along with great effort an ear of corn he was taking to his nest.\"Why don't you come and chat with me,\" asked the Grasshopper, \"instead of toiling your life away?\"\"I am helping to store up food for the winter,\" said the Ant, \"and I recommend you to do the same.\"\n\"Why bother about winter?\" said the Grasshopper. \"We have got plenty of food at present.\"", "text2", "text3"]
+
 function timedCount() {
     counter++;
     timeout = setTimeout(timedCount, 100);
@@ -370,5 +373,18 @@ function main() {
         insertText(inputField.value);
         current = 0;
     });
+    $("#ex1").on("click", function () {
+        insertText(examples[0]);
+        current = 0;
+    })
+    $("#ex2").on("click", function () {
+        insertText(examples[1]);
+        current = 0;
+    })
+    $("#ex3").on("click", function () {
+        insertText(examples[2]);
+        current = 0;
+    })
+
 }
 main();

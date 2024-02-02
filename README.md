@@ -24,6 +24,7 @@ Task list:
 		text arrangement
 		default exercices
 		style pallete picker
+		handle ENTER
 		
 	style:
 		✔️ space text

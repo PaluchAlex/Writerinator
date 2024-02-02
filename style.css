@@ -33,7 +33,11 @@ body {
     display: flex;
     justify-content: space-around;
 }
-
+#examples {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
 .keyboard-key {
     border: 10px solid;
     border-color: rgb(170, 6, 6);
