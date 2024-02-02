@@ -22,9 +22,10 @@ Task list:
 		sounds 
 	 	✔️ underline current
 		text arrangement
-		default exercices
+		✔️ default exercices
 		style pallete picker
 		handle ENTER
+		highlight which button you should press next
 		
 	style:
 		✔️ space text
