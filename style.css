@@ -38,6 +38,7 @@ body {
     top: 30px;
     right: 30px;
 }
+
 .keyboard-key {
     border: 10px solid;
     border-color: rgb(170, 6, 6);
@@ -121,13 +122,22 @@ body {
     border-radius: 25px;
     border: 5px solid rgb(0, 0, 0);
     border-style:dotted;
+    padding: 8px;
     width: 60%;
     height: auto;
     margin-bottom: 30px;
     display: flex;
+    flex-flow: row wrap;
     flex-direction: row; 
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+}
+.newLine {
+    width: 100%;
+}
+.typedEnter{
+    width: 35px;
+    height: 45px;
 }
 .word{
     display: flex;

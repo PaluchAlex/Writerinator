@@ -150,6 +150,16 @@ function handleVerifyKey(event) {
         // go next
         charDivList[current].classList.remove("current");
         current++;
+    } else if (event.key === "Enter" && charTextList[current] === "\n") {
+        charDivList[current].classList.add("correct");
+        // go next
+        charDivList[current].classList.remove("current");
+        current++;
+        if (current != charDivList.length - 1) {
+            if (charTextList[current] == " ") {
+                
+            }
+        }
     } else if (event.key === "Backspace") {
         // backspace case
         if (current != 0) {
@@ -223,7 +233,7 @@ function removeActiveClass() {
 // text insertion functions
 function insertText(text) {
     if (text == null || text == "") {
-        text = "This is the default text!";
+        text = "This is the\n    default text!";
         //    "This is the default text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et odio pellentesque diam volutpat commodo. Platea dictumst quisque sagittis purus sit amet volutpat. Nibh sed pulvinar proin gravida hendrerit.";
     }
     // reset counter
@@ -232,6 +242,7 @@ function insertText(text) {
     stopCount();
 
     charTextList = getCharacters(text);
+    console.log(charTextList);
     wordTextList = getWords(text);
     console.log(wordTextList);
 
@@ -243,12 +254,11 @@ function insertText(text) {
     //for each word
     wordTextList.forEach((word) => {
         // create new word div
-        const wordDiv = document.createElement("div");
+        let wordDiv = document.createElement("div");
         wordDiv.classList.add("word");
 
         for (let index = 0; index < word.length; index++) {
             let char = word.charAt(index);
-
             const charDiv = document.createElement("div");
             charDiv.classList.add("character");
 
@@ -258,12 +268,39 @@ function insertText(text) {
             }
             if (char == "’") {
                 char = "'";
+            } else if (char == "“") {
+                char = '"'
             }
-            // charDiv.textContent = char;
             charDiv.innerHTML = char;
-            wordDiv.appendChild(charDiv);
+
+            if (word[index] == "\n") {
+                let elem = document.createElement("img");
+                elem.src = "images/enter.png";
+                elem.classList.add("character");
+                elem.classList.add("typedEnter");
+                wordDiv.appendChild(elem);  
+            } else {
+                wordDiv.appendChild(charDiv);
+            }
+
+            if (word[index] == "\n") {
+                // make div with class newLine
+
+                // finish current word 
+                resultsContainer.appendChild(wordDiv);
+
+                // add NL div
+                const newLineDiv = document.createElement("div");
+                newLineDiv.classList.add("newLine");
+                resultsContainer.appendChild(newLineDiv);
+
+                // start new word
+                wordDiv = document.createElement("div");
+                wordDiv.classList.add("word");
+            }
             // handle space
-            if (index === word.length - 1) {
+            else if(index === word.length - 1) {
+                // if end of word
                 const spaceDiv = document.createElement("div");
                 spaceDiv.classList.add("character");
 
@@ -277,6 +314,18 @@ function insertText(text) {
 }
 
 function getCharacters(str) {
+    for (let index = 1; index < str.length; index++) {
+        if (str[index] == " " && str[index - 1] == "\n") {
+            //remove spaces that come after "\n"
+
+            str = str.slice(0,index) + str.slice(index+1);
+            index--;
+        }else if (str[index] == "’") {
+            str[index] = "'";
+        } else if (str[index] == "“") {
+            str[index] = '"'
+        }
+    }
     return str.split("");
 }
 
